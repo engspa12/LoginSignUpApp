@@ -17,7 +17,7 @@ import com.example.dbm.loginsignupheroku.R
 @Composable
 fun GradientButton(
     modifier: Modifier = Modifier,
-    gradient : Brush = Brush.horizontalGradient(listOf(Color(0xFF28D8A3), Color(0xFF00BEB2))),
+    gradient : Brush = Brush.horizontalGradient(listOf(Color(0xFFFFD456), Color(0xFFFF9700))),
     elevation: ButtonElevation,
     shape: Shape,
     onClick: () -> Unit = { }
@@ -36,18 +36,25 @@ fun GradientButton(
                 .then(modifier),
             contentAlignment = Alignment.Center,
         ) {
-            Text(
-                text = "LOGIN",
-                fontSize = 16.sp,
-                modifier = Modifier.padding(8.dp)
-            )
-            Icon(
-                painter = painterResource(id = R.drawable.ic_login_button_arrow),
-                contentDescription = "Arrow Login Button",
-                modifier = Modifier
-                    .requiredHeight(28.dp)
-                    .requiredWidth(34.dp)
-            )
+            Row(
+                modifier = Modifier.padding(10.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "LOGIN",
+                    fontSize = 16.sp,
+                    color = Color.White,
+                    modifier = Modifier.padding(8.dp)
+                )
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_login_button_arrow),
+                    contentDescription = "Arrow Login Button",
+                    tint = Color.White,
+                    modifier = Modifier
+                        .requiredHeight(28.dp)
+                        .requiredWidth(34.dp)
+                )
+            }
         }
     }
 }

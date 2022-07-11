@@ -12,6 +12,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.dbm.loginsignupheroku.R
 import com.example.dbm.loginsignupheroku.presentation.ui.theme.LoginSignUpHerokuTheme
+import com.example.dbm.loginsignupheroku.presentation.view.components.GradientButton
 import com.example.dbm.loginsignupheroku.presentation.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -100,7 +102,9 @@ fun LoginScreen(
             onValueChange = {
                 usernameChange(it)
             },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.White),
             label = {
                 Text("EMAIL")
             }
@@ -114,7 +118,8 @@ fun LoginScreen(
                 passwordChange(it)
             },
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .background(Color.Transparent),
             label = {
                 Text("PASSWORD")
             },
@@ -123,6 +128,7 @@ fun LoginScreen(
             trailingIcon = {
                 Text(
                     text = "FORGOT",
+                    color = Color(0xFFFF9700),
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .padding(end = 12.dp)
@@ -135,10 +141,9 @@ fun LoginScreen(
         Spacer(modifier = Modifier
             .height(36.dp)
         )
-        Button(
+        GradientButton(
             modifier = Modifier
                 .align(Alignment.End),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Yellow),
             elevation = ButtonDefaults.elevation(
                 defaultElevation = 6.dp,
                 pressedElevation = 8.dp,
@@ -148,20 +153,7 @@ fun LoginScreen(
                 loginButtonPressed()
             },
             shape = RoundedCornerShape(50)
-        ) {
-            Text(
-                text = "LOGIN",
-                fontSize = 16.sp,
-                modifier = Modifier.padding(8.dp)
-            )
-            Icon(
-                painter = painterResource(id = R.drawable.ic_login_button_arrow),
-                contentDescription = "Arrow Login Button",
-                modifier = Modifier
-                    .requiredHeight(28.dp)
-                    .requiredWidth(34.dp)
-            )
-        }
+        )
         Spacer(modifier = Modifier.weight(1f))
         Text(
             text = "Don't have an account? Sign in",

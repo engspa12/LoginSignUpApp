@@ -123,7 +123,7 @@ fun LoginScreen(
                 )
             },
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFFFFFFFF)
+                backgroundColor = MaterialTheme.colors.background
             )
         )
         Spacer(modifier = Modifier
@@ -166,7 +166,7 @@ fun LoginScreen(
                     )
                 },
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFFFFFFFF)
+                backgroundColor = MaterialTheme.colors.background
             )
         )
         Spacer(modifier = Modifier

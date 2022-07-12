@@ -1,28 +1,28 @@
 package com.example.dbm.loginsignupheroku.presentation.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,10 +54,12 @@ class MainActivity : ComponentActivity() {
                     }, {
                         password = it
                     }, {
-                        //Call ViewModel with data
                         viewModel.sendLoginData(username, password)
-                        //println("Login button was pressed")
-                    })
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 36.dp)
+                    )
                 }
             }
         }
@@ -70,19 +72,18 @@ fun LoginScreen(
     password: String,
     usernameChange: (String) -> Unit,
     passwordChange: (String) -> Unit,
-    loginButtonPressed: () -> Unit
+    loginButtonPressed: () -> Unit,
+    modifier: Modifier = Modifier
 ){
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 36.dp)) {
+        modifier = modifier) {
         Spacer(modifier = Modifier.weight(1f))
         Text(
             text = "Login",
             fontSize = 34.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.W800,
             modifier = Modifier
                 .align(Alignment.Start)
         )
@@ -160,7 +161,7 @@ fun LoginScreen(
                         modifier = Modifier
                             .padding(end = 12.dp)
                             .clickable {
-                                //TODO: Password recovery
+                                Log.d("Forgot", "Password Recovery was pressed")
                             }
                     )
                 },
@@ -185,10 +186,29 @@ fun LoginScreen(
             shape = RoundedCornerShape(50)
         )
         Spacer(modifier = Modifier.weight(1f))
-        Text(
-            text = "Don't have an account? Sign in",
-            color = Color.Gray,
-            modifier = Modifier.padding(bottom = 24.dp)
+        ClickableText(
+            text = buildAnnotatedString {
+                withStyle(style = SpanStyle(
+                    color = Color.Gray,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.W600)
+                ) {
+                    append("Don't have an account? ")
+                }
+                withStyle(style = SpanStyle(
+                    color = Color(0xFFFF9700),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold)
+                ) {
+                    append("Sign up")
+                }
+            },
+            modifier = Modifier.padding(bottom = 24.dp),
+            onClick = { offset ->
+                if(offset >= 24){
+                    Log.d("ClickableText", "The Sign up text was clicked!!")
+                }
+            }
         )
     }
 }
@@ -211,7 +231,11 @@ fun DefaultPreview() {
                 password = "123456789ABCDEF",
                 usernameChange = {},
                 passwordChange = {},
-                loginButtonPressed = {})
+                loginButtonPressed = {},
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 36.dp)
+            )
         }
     }
 }

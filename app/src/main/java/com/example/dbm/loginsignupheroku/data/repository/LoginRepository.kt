@@ -1,5 +1,6 @@
 package com.example.dbm.loginsignupheroku.data.repository
 
+import android.util.Log
 import com.example.dbm.loginsignupheroku.data.network.mapper.LoginNetworkMapper
 import com.example.dbm.loginsignupheroku.data.network.datasource.ServiceApi
 import com.example.dbm.loginsignupheroku.di.DispatchersModule
@@ -24,10 +25,10 @@ class LoginRepository @Inject constructor(
                 if(response.isSuccessful && result != null){
                     // This could be returned to Domain Layer
                     val loginDomain = loginNetworkMapper.toDomain(result)
-                    println(loginDomain)
+                    Log.d("LoginRepository", "You are logged in!! The user is: $loginDomain")
                 } else {
-                    println("Error code is: ${response.code()}")
-                    println(response.errorBody()!!.string())
+                    Log.d("LoginRepository","Error code is: ${response.code()}")
+                    Log.d("LoginRepository", "The error body is ${response.errorBody()!!.string()}")
                 }
             } catch (e: Exception){
                 println(e.message ?: "Error during network call")

@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -87,7 +88,7 @@ fun LoginScreen(
         )
         Text(
             text = "Please sign in to continue",
-            fontSize = 18.sp,
+            fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Gray,
             modifier = Modifier
@@ -102,12 +103,27 @@ fun LoginScreen(
             onValueChange = {
                 usernameChange(it)
             },
+            textStyle = TextStyle(
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            ),
             modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White),
+                .fillMaxWidth().shadow(10.dp),
             label = {
-                Text("EMAIL")
-            }
+                Text(text = "EMAIL", fontWeight = FontWeight.Bold)
+            },
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_login_email),
+                    contentDescription = "Login Password",
+                    modifier = Modifier
+                        .requiredHeight(28.dp)
+                        .requiredWidth(34.dp)
+                )
+            },
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color(0xFFFFFFFF)
+            )
         )
         Spacer(modifier = Modifier
             .height(8.dp)
@@ -115,28 +131,42 @@ fun LoginScreen(
         TextField(
             value = password,
             onValueChange = {
-                passwordChange(it)
-            },
+                    passwordChange(it)
+                },
+            textStyle = TextStyle(
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            ),
             modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Transparent),
+                .fillMaxWidth().shadow(10.dp),
             label = {
-                Text("PASSWORD")
-            },
+                Text(text = "PASSWORD", fontWeight = FontWeight.Bold) },
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            leadingIcon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_login_password),
+                        contentDescription = "Login Password",
+                        modifier = Modifier
+                            .requiredHeight(28.dp)
+                            .requiredWidth(34.dp)
+                    )
+                },
             trailingIcon = {
-                Text(
-                    text = "FORGOT",
-                    color = Color(0xFFFF9700),
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .padding(end = 12.dp)
-                        .clickable {
-                            //TODO: Password recovery
-                        }
-                )
-            }
+                    Text(
+                        text = "FORGOT",
+                        color = Color(0xFFFF9700),
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(end = 12.dp)
+                            .clickable {
+                                //TODO: Password recovery
+                            }
+                    )
+                },
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color(0xFFFFFFFF)
+            )
         )
         Spacer(modifier = Modifier
             .height(36.dp)
@@ -157,6 +187,7 @@ fun LoginScreen(
         Spacer(modifier = Modifier.weight(1f))
         Text(
             text = "Don't have an account? Sign in",
+            color = Color.Gray,
             modifier = Modifier.padding(bottom = 24.dp)
         )
     }

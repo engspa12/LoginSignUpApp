@@ -26,7 +26,7 @@ class LoginRepository @Inject constructor(
                     val loginDomain = loginNetworkMapper.toDomain(result)
                     println(loginDomain)
                 } else {
-                    println(response.code().toString())
+                    println("Error code is: ${response.code()}")
                     println(response.errorBody()!!.string())
                 }
             } catch (e: Exception){

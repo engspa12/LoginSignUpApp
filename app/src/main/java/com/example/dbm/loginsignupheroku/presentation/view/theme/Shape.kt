@@ -1,4 +1,4 @@
-package com.example.dbm.loginsignupheroku.presentation.ui.theme
+package com.example.dbm.loginsignupheroku.presentation.view.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

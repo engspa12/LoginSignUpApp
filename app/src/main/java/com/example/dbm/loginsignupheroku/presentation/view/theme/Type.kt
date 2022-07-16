@@ -1,4 +1,4 @@
-package com.example.dbm.loginsignupheroku.presentation.ui.theme
+package com.example.dbm.loginsignupheroku.presentation.view.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

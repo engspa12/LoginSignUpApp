@@ -1,11 +1,10 @@
 package com.example.dbm.loginsignupheroku.domain.usecase
 
-import com.example.dbm.loginsignupheroku.data.repository.LoginRepository
-import com.example.dbm.loginsignupheroku.domain.usecase.ILoginUseCase
+import com.example.dbm.loginsignupheroku.domain.repository.ILoginRepository
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
-    private val loginRepository: LoginRepository
+    private val loginRepository: ILoginRepository
 ) : ILoginUseCase {
 
     override suspend operator fun invoke(email: String, password: String) {
